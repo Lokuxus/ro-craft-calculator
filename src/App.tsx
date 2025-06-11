@@ -1,18 +1,17 @@
-import {useState} from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState } from 'react'
+
 import './App.css'
 
 function App() {
     const [researchPotLevel, setResearchPotLevel] = useState(10)
     const [preparePotLevel, setPreparePotLevel] = useState(10)
-    const [humunculusBlessLevel, setHumunculusBlessLevel] = useState(5)
+    const [humunculusChangeofPlans, setHumunculusChangeofPlans] = useState(5)
     const [LevelJob, setLevelJob] = useState(70);
     const [Dex, setDex] = useState(120);
     const [SOR, setSOR] = useState(150);
     const [INT, setINT] = useState(120);
     const [Dificuldade, setDificuldade] = useState(0);
-
+    const dificuldades = [15, 5, -5, -10, -15]
     return (
         <>
 
@@ -37,9 +36,9 @@ function App() {
                         </select>
                     </div>
                     <div>
-                        <label htmlFor="humunculusBlessLevel">Humunculus Bless Level: </label>
-                        <select id="humunculusBlessLevel" value={humunculusBlessLevel}
-                                onChange={(e) => setHumunculusBlessLevel(Number(e.target.value))}>
+                        <label htmlFor="humunculusBlessLevel">Humunculus Change of Plans: </label>
+                        <select id="humunculusBlessLevel" value={humunculusChangeofPlans}
+                                onChange={(e) => setHumunculusChangeofPlans(Number(e.target.value))}>
                             {[...Array(6)].map((_, i) => (
                                 <option key={i} value={i}>{i}</option>
                             ))}
@@ -57,8 +56,8 @@ function App() {
                         <label htmlFor="Dificuldade">Dificuldade: </label>
                         <select id="Dificuldade" value={Dificuldade}
                                 onChange={(e) => setDificuldade(Number(e.target.value))}>
-                            {[...Array(11)].map((_, i) => (
-                                <option key={i} value={i}>{i}</option>
+                            {[...dificuldades].map((_, i) => (
+                                <option key={i} value={_}>{_}%</option>
                             ))}
                         </select>
                     </div>
@@ -76,7 +75,7 @@ function App() {
                     </div>
                 </form>
                 <p>Success Rate:
-                    [{((preparePotLevel * 3) + researchPotLevel + humunculusBlessLevel) + (LevelJob * 0.2) + (Dex * 0.1) + (SOR * 0.1) + (INT * 0.05) + (Dificuldade)}]%</p>
+                    [{((preparePotLevel * 3) + researchPotLevel + humunculusChangeofPlans) + (LevelJob * 0.2) + (Dex * 0.1) + (SOR * 0.1) + (INT * 0.05) + (Dificuldade)}]%</p>
             </div>
 
         </>
