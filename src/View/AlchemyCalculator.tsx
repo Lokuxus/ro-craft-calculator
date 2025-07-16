@@ -14,7 +14,6 @@ const AlchemyCalculator: React.FC<AlchemyCalculatorProps> = ({playerInfo, setPla
 
     return (
         <>
-
             <Card className="form-component">
                 <div className="grid align-self-center">
                     <div className="col-12 flex align-items-center gap-2">
@@ -23,7 +22,7 @@ const AlchemyCalculator: React.FC<AlchemyCalculatorProps> = ({playerInfo, setPla
                                   value={playerInfo.ResearchPotionLevel}
                                   onChange={(e) => setPlayerInfo({...playerInfo, ResearchPotionLevel: e.value})}
                                   options={[...Array(11)].map((_, i) => ({label: i.toString(), value: i}))}
-                                  className="w-5rem"
+                                  className="w-7rem"
                         />
                     </div>
                     <div className="col-12 flex align-items-center gap-2">
@@ -32,7 +31,7 @@ const AlchemyCalculator: React.FC<AlchemyCalculatorProps> = ({playerInfo, setPla
                                   value={playerInfo.PreparePotionLevel}
                                   onChange={(e) => setPlayerInfo({...playerInfo, PreparePotionLevel: e.value})}
                                   options={[...Array(11)].map((_, i) => ({label: i.toString(), value: i}))}
-                                  className="w-5rem"
+                                  className="w-7rem"
                         />
                     </div>
                     <div className="col-12 flex align-items-center gap-2">
@@ -41,7 +40,7 @@ const AlchemyCalculator: React.FC<AlchemyCalculatorProps> = ({playerInfo, setPla
                                   value={playerInfo.InstructionChangeLevel}
                                   onChange={(e) => setPlayerInfo({...playerInfo, InstructionChangeLevel: e.value})}
                                   options={[...Array(6)].map((_, i) => ({label: i.toString(), value: i}))}
-                                  className="w-5rem"
+                                  className="w-7rem"
                         />
                     </div>
                     <div className="col-12 flex align-items-center gap-2">
@@ -50,7 +49,7 @@ const AlchemyCalculator: React.FC<AlchemyCalculatorProps> = ({playerInfo, setPla
                                   value={playerInfo.JobLevel}
                                   onChange={(e) => setPlayerInfo({...playerInfo, JobLevel: e.value})}
                                   options={[...Array(70)].map((_, i) => ({label: (i + 1).toString(), value: i + 1}))}
-                                  className="w-5rem"
+                                  className="w-7rem"
                         />
                     </div>
                     <div className="col-12 flex align-items-center gap-2">
@@ -59,7 +58,7 @@ const AlchemyCalculator: React.FC<AlchemyCalculatorProps> = ({playerInfo, setPla
                                   value={playerInfo.Dificuldade}
                                   onChange={(e) => setPlayerInfo({...playerInfo, Dificuldade: e.value})}
                                   options={dificuldades.map(value => ({label: `${value}%`, value}))}
-                                  className="w-5rem"
+                                  className="w-7rem"
                         />
                     </div>
                     <div className="col-12 flex align-items-center gap-2">
@@ -67,7 +66,7 @@ const AlchemyCalculator: React.FC<AlchemyCalculatorProps> = ({playerInfo, setPla
                         <InputNumber id="INT"
                                      value={playerInfo.INT}
                                      onValueChange={(e) => setPlayerInfo({...playerInfo, INT: e.value ?? 0})}
-                                     className="w-5rem"
+                                     className="w-7rem"
                         />
                     </div>
                     <div className="col-12 flex align-items-center gap-2">
@@ -75,7 +74,7 @@ const AlchemyCalculator: React.FC<AlchemyCalculatorProps> = ({playerInfo, setPla
                         <InputNumber id="Dex"
                                      value={playerInfo.Dex}
                                      onValueChange={(e) => setPlayerInfo({...playerInfo, Dex: e.value ?? 0})}
-                                     className="w-5rem"
+                                     className="w-7rem"
                         />
                     </div>
                     <div className="col-12 flex align-items-center gap-2">
@@ -83,16 +82,16 @@ const AlchemyCalculator: React.FC<AlchemyCalculatorProps> = ({playerInfo, setPla
                         <InputNumber id="SOR"
                                      value={playerInfo.SOR}
                                      onValueChange={(e) => setPlayerInfo({...playerInfo, SOR: e.value ?? 0})}
-                                     className="w-5rem"
+                                     className="w-7rem"
                         />
                     </div>
                 </div>
                 <div className="text-center font-bold col-12 flex align-items-center">
                     <p>Success
-                        Rate: {((playerInfo.PreparePotionLevel * 3) + playerInfo.ResearchPotionLevel + playerInfo.InstructionChangeLevel) + (playerInfo.JobLevel * 0.2) + (playerInfo.Dex * 0.1) + (playerInfo.SOR * 0.1) + (playerInfo.INT * 0.05) + (playerInfo.Dificuldade)}%
+                        Rate: {((playerInfo.PreparePotionLevel * 3) + playerInfo.ResearchPotionLevel + playerInfo.InstructionChangeLevel)
+                            + (playerInfo.JobLevel * 0.2) + (playerInfo.Dex * 0.1) + (playerInfo.SOR * 0.1) + (playerInfo.INT * 0.05) + (playerInfo.Dificuldade)}%
                     </p></div>
             </Card>
-
         </>
     )
 

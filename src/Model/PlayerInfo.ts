@@ -1,3 +1,5 @@
+import type {NivelFarmacologia} from "../Data/DadosBaseFarmacologia.ts";
+
 export interface PlayerInfo {
 
     ResearchPotionLevel: number;
@@ -10,5 +12,6 @@ export interface PlayerInfo {
     INT: number;
     Dex: number;
     SOR: number;
+    levelFarmacologiaAvancada: NivelFarmacologia;
 }
 

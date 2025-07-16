@@ -34,7 +34,6 @@ function calcularSucessoAvancado(playerInfo: PlayerInfo): number {
 const SpecialPharmacyCalculator: React.FC<SpecialPharmacyCalculator> = ({playerInfo, setPlayerInfo}) => {
 
     const [selectedPotion, setSelectedPotion] = useState<any | null>(null);
-    const [levelFarmacologiaAvancada, setLevelFarmacologiaAvancada] = useState<NivelFarmacologia>()
 
     return <>
         <Card className="form-component">
@@ -45,7 +44,7 @@ const SpecialPharmacyCalculator: React.FC<SpecialPharmacyCalculator> = ({playerI
                               value={playerInfo.ResearchPotionLevel}
                               onChange={(e) => setPlayerInfo({...playerInfo, ResearchPotionLevel: e.value})}
                               options={[...Array(11)].map((_, i) => ({label: i.toString(), value: i}))}
-                              className="w-5rem"
+                              className="w-7rem"
                     />
                 </div>
                 <div className="col-12 flex align-items-center gap-2">
@@ -54,7 +53,7 @@ const SpecialPharmacyCalculator: React.FC<SpecialPharmacyCalculator> = ({playerI
                               value={playerInfo.BaseLevel}
                               onChange={(e) => setPlayerInfo({...playerInfo, BaseLevel: e.value})}
                               options={[...Array(175)].map((_, i) => ({label: (i + 1).toString(), value: i + 1}))}
-                              className="w-5rem"
+                              className="w-7rem"
                     />
                 </div>
                 <div className="col-12 flex align-items-center gap-2">
@@ -63,7 +62,7 @@ const SpecialPharmacyCalculator: React.FC<SpecialPharmacyCalculator> = ({playerI
                               value={playerInfo.JobLevel}
                               onChange={(e) => setPlayerInfo({...playerInfo, JobLevel: e.value})}
                               options={[...Array(70)].map((_, i) => ({label: (i + 1).toString(), value: i + 1}))}
-                              className="w-5rem"
+                              className="w-7rem"
                     />
                 </div>
                 <div className="col-12 flex align-items-center gap-2">
@@ -73,16 +72,19 @@ const SpecialPharmacyCalculator: React.FC<SpecialPharmacyCalculator> = ({playerI
                               value={playerInfo.FullChemicalProtectionLevel}
                               onChange={(e) => setPlayerInfo({...playerInfo, FullChemicalProtectionLevel: e.value})}
                               options={[...Array(5)].map((_, i) => ({label: (i + 1).toString(), value: i + 1}))}
-                              className="w-5rem"
+                              className="w-7rem"
                     />
                 </div>
                 <div className="col-12 flex align-items-center gap-2">
                     <label htmlFor="levelFarmacologia" className="w-12rem">Level Special Pharmacy</label>
                     <Dropdown id="levelFarmacologia"
-                              value={levelFarmacologiaAvancada}
-                              onChange={(e) => setLevelFarmacologiaAvancada(e.value as NivelFarmacologia)}
+                              value={playerInfo.levelFarmacologiaAvancada}
+                              onChange={(e) => setPlayerInfo({
+                                  ...playerInfo,
+                                  levelFarmacologiaAvancada: e.value as NivelFarmacologia
+                              })}
                               options={niveisFarmacologia} optionLabel={'nv'}
-                              className="w-5rem"
+                              className="w-7rem"
                     />
                 </div>
                 <div className="col-12 flex align-items-center gap-2">
@@ -90,7 +92,7 @@ const SpecialPharmacyCalculator: React.FC<SpecialPharmacyCalculator> = ({playerI
                     <InputNumber id="INT"
                                  value={playerInfo.INT}
                                  onValueChange={(e) => setPlayerInfo({...playerInfo, INT: e.value ?? 0})}
-                                 className="w-5rem"
+                                 className="w-7rem"
                     />
                 </div>
                 <div className="col-12 flex align-items-center gap-2">
@@ -98,7 +100,7 @@ const SpecialPharmacyCalculator: React.FC<SpecialPharmacyCalculator> = ({playerI
                     <InputNumber id="Dex"
                                  value={playerInfo.Dex}
                                  onValueChange={(e) => setPlayerInfo({...playerInfo, Dex: e.value ?? 0})}
-                                 className="w-5rem"
+                                 className="w-7rem"
                     />
                 </div>
                 <div className="col-12 flex align-items-center gap-2">
@@ -106,13 +108,12 @@ const SpecialPharmacyCalculator: React.FC<SpecialPharmacyCalculator> = ({playerI
                     <InputNumber id="SOR"
                                  value={playerInfo.SOR}
                                  onValueChange={(e) => setPlayerInfo({...playerInfo, SOR: e.value ?? 0})}
-                                 className="w-5rem"
+                                 className="w-7rem"
                     />
                 </div>
             </div>
             <div className="text-center font-bold col-12 flex align-items-center">
-                <p>Formula A: {calcularSucessoAvancado(playerInfo)}
-                    Formula B: {levelFarmacologiaAvancada?.fator + selectedPotion?.taxa + 0}
+                <p>Formula A: {calcularSucessoAvancado(playerInfo)}  Formula B: {playerInfo.levelFarmacologiaAvancada?.fator + selectedPotion?.taxa + 0}
                 </p></div>
         </Card>
         <PotionTable selectedPotion={selectedPotion} setSelectedPotion={setSelectedPotion}/></>
