@@ -31,6 +31,24 @@ function calcularSucessoAvancado(playerInfo: PlayerInfo): number {
 }
 
 
+function calcularQuantidadePocoes(A: number, B: number = 0, maxPocoes: number): number {
+    const diferenca = A - B;
+
+    switch (true) {
+        case diferenca >= 400:
+            return maxPocoes;
+        case diferenca >= 300:
+            return maxPocoes - 3;
+        case diferenca >= 100:
+            return maxPocoes - 4;
+        case diferenca >= 1:
+            return maxPocoes - 5;
+        default: // A < B
+            return maxPocoes - 6;
+    }
+}
+
+
 const SpecialPharmacyCalculator: React.FC<SpecialPharmacyCalculator> = ({playerInfo, setPlayerInfo}) => {
 
     const [selectedPotion, setSelectedPotion] = useState<any | null>(null);
@@ -113,8 +131,13 @@ const SpecialPharmacyCalculator: React.FC<SpecialPharmacyCalculator> = ({playerI
                 </div>
             </div>
             <div className="text-center font-bold col-12 flex align-items-center">
-                <p>Formula A: {calcularSucessoAvancado(playerInfo)}  Formula B: {playerInfo.levelFarmacologiaAvancada?.fator + selectedPotion?.taxa + 0}
-                </p></div>
+                <p>Formula A: {calcularSucessoAvancado(playerInfo)} <br/>
+                    Formula B: {playerInfo.levelFarmacologiaAvancada?.fator + selectedPotion?.taxa + 0}<br/>
+                    Total de poções: {calcularQuantidadePocoes(calcularSucessoAvancado(playerInfo),
+                        playerInfo.levelFarmacologiaAvancada?.fator + selectedPotion?.taxa + 0,
+                        playerInfo.levelFarmacologiaAvancada.maxPocoes)}
+                </p>
+            </div>
         </Card>
         <PotionTable selectedPotion={selectedPotion} setSelectedPotion={setSelectedPotion}/></>
 }

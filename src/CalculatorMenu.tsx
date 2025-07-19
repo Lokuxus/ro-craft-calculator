@@ -1,4 +1,4 @@
-import './App.css'
+import './CalculatorMenu.css'
 // import {useCookies} from "react-cookie";
 import type {PlayerInfo} from "./Model/PlayerInfo.ts";
 import {useState} from "react";
@@ -43,24 +43,16 @@ const CalculatorMenu: React.FC = () => {
     ];
 
     return (
-        <div>
-            <div style={{
-                position: "fixed",
-                top: 0,
-                left: 0,
-                width: "100%",
-                zIndex: 1000
-            }}>
-                <Menubar model={menuItems}/>
-            </div>
+        <>
+            <Menubar className="menubar" model={menuItems}/>
 
-            <div style={{width: "100%", zIndex: 1000, paddingTop: "0.2rem"}} className="mt-4">
+            <div className="mt-4 w-full">
                 {selectedCalculator === 'alchemy' &&
                     <AlchemyCalculator playerInfo={playerInfo} setPlayerInfo={setPlayerInfo}/>}
                 {selectedCalculator === 'specialPharmacy' &&
                     <SpecialPharmacyCalculator playerInfo={playerInfo} setPlayerInfo={setPlayerInfo}/>}
             </div>
-        </div>
+        </>
     );
 
 }
